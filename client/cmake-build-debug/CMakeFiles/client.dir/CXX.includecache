@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yeehanchen/workspace/network&dis/project-1/client/client.cpp
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+sys/socket.h
+-
+sys/types.h
+-
+netdb.h
+-
+netinet/in.h
+-
+netinet/ip.h
+-
+log4cplus/logger.h
+-
+log4cplus/loggingmacros.h
+-
+log4cplus/configurator.h
+-
+log4cplus/fileappender.h
+-
+
