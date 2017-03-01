@@ -34,9 +34,10 @@ int main(int argc, char* argv[])
     log4cplus::BasicConfigurator config;
     config.configure();
 
-    log4cplus::SharedAppenderPtr appenderPtr(new log4cplus::FileAppender("logs/client.log",std::ios_base::trunc,false,true));
+    log4cplus::SharedAppenderPtr appenderPtr(new log4cplus::FileAppender("logs/client.log",std::ios_base::trunc,true,true));
     log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("client"));
     logger.addAppender(appenderPtr);
+    LOG4CPLUS_INFO(logger,"Hello World");
 
     if (argc != 3)
     {
@@ -83,7 +84,8 @@ int main(int argc, char* argv[])
     {
         buf[bytes_received] = '\0';
         fprintf(stdout, "Received %s", buf);
-    }        
+    }
+
 
     freeaddrinfo(servinfo);
     close(sock);    

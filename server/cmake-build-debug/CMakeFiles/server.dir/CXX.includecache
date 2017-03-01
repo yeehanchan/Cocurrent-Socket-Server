@@ -29,4 +29,14 @@ log4cplus/configurator.h
 -
 log4cplus/fileappender.h
 -
+sys/time.h
+-
+sys/types.h
+-
+unistd.h
+-
+arpa/inet.h
+-
+netdb.h
+-
 
