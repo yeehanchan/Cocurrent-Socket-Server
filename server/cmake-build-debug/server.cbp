@@ -84,7 +84,28 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/server.cpp">
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/httpResponse.c">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/httpResponse.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/lex.yy.c">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/parse.c">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/parse.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/parser.y">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/server.c">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/y.tab.c">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/yeehanchen/workspace/network&amp;dis/project-1/server/CMakeLists.txt">

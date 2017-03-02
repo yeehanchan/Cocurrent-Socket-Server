@@ -57,41 +57,145 @@ include CMakeFiles/server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/server.dir/flags.make
 
-CMakeFiles/server.dir/server.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/server.cpp.o: ../server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/server.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/server.cpp.o -c "/home/yeehanchen/workspace/network&dis/project-1/server/server.cpp"
+CMakeFiles/server.dir/server.c.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/server.c.o: ../server.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/server.dir/server.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/server.c.o   -c "/home/yeehanchen/workspace/network&dis/project-1/server/server.c"
 
-CMakeFiles/server.dir/server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/server.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/yeehanchen/workspace/network&dis/project-1/server/server.cpp" > CMakeFiles/server.dir/server.cpp.i
+CMakeFiles/server.dir/server.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/server.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/yeehanchen/workspace/network&dis/project-1/server/server.c" > CMakeFiles/server.dir/server.c.i
 
-CMakeFiles/server.dir/server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/server.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/yeehanchen/workspace/network&dis/project-1/server/server.cpp" -o CMakeFiles/server.dir/server.cpp.s
+CMakeFiles/server.dir/server.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/server.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/yeehanchen/workspace/network&dis/project-1/server/server.c" -o CMakeFiles/server.dir/server.c.s
 
-CMakeFiles/server.dir/server.cpp.o.requires:
+CMakeFiles/server.dir/server.c.o.requires:
 
-.PHONY : CMakeFiles/server.dir/server.cpp.o.requires
+.PHONY : CMakeFiles/server.dir/server.c.o.requires
 
-CMakeFiles/server.dir/server.cpp.o.provides: CMakeFiles/server.dir/server.cpp.o.requires
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.o.provides.build
-.PHONY : CMakeFiles/server.dir/server.cpp.o.provides
+CMakeFiles/server.dir/server.c.o.provides: CMakeFiles/server.dir/server.c.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.c.o.provides.build
+.PHONY : CMakeFiles/server.dir/server.c.o.provides
 
-CMakeFiles/server.dir/server.cpp.o.provides.build: CMakeFiles/server.dir/server.cpp.o
+CMakeFiles/server.dir/server.c.o.provides.build: CMakeFiles/server.dir/server.c.o
+
+
+CMakeFiles/server.dir/parse.c.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/parse.c.o: ../parse.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/server.dir/parse.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/parse.c.o   -c "/home/yeehanchen/workspace/network&dis/project-1/server/parse.c"
+
+CMakeFiles/server.dir/parse.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/parse.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/yeehanchen/workspace/network&dis/project-1/server/parse.c" > CMakeFiles/server.dir/parse.c.i
+
+CMakeFiles/server.dir/parse.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/parse.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/yeehanchen/workspace/network&dis/project-1/server/parse.c" -o CMakeFiles/server.dir/parse.c.s
+
+CMakeFiles/server.dir/parse.c.o.requires:
+
+.PHONY : CMakeFiles/server.dir/parse.c.o.requires
+
+CMakeFiles/server.dir/parse.c.o.provides: CMakeFiles/server.dir/parse.c.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/parse.c.o.provides.build
+.PHONY : CMakeFiles/server.dir/parse.c.o.provides
+
+CMakeFiles/server.dir/parse.c.o.provides.build: CMakeFiles/server.dir/parse.c.o
+
+
+CMakeFiles/server.dir/y.tab.c.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/y.tab.c.o: ../y.tab.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/server.dir/y.tab.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/y.tab.c.o   -c "/home/yeehanchen/workspace/network&dis/project-1/server/y.tab.c"
+
+CMakeFiles/server.dir/y.tab.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/y.tab.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/yeehanchen/workspace/network&dis/project-1/server/y.tab.c" > CMakeFiles/server.dir/y.tab.c.i
+
+CMakeFiles/server.dir/y.tab.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/y.tab.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/yeehanchen/workspace/network&dis/project-1/server/y.tab.c" -o CMakeFiles/server.dir/y.tab.c.s
+
+CMakeFiles/server.dir/y.tab.c.o.requires:
+
+.PHONY : CMakeFiles/server.dir/y.tab.c.o.requires
+
+CMakeFiles/server.dir/y.tab.c.o.provides: CMakeFiles/server.dir/y.tab.c.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/y.tab.c.o.provides.build
+.PHONY : CMakeFiles/server.dir/y.tab.c.o.provides
+
+CMakeFiles/server.dir/y.tab.c.o.provides.build: CMakeFiles/server.dir/y.tab.c.o
+
+
+CMakeFiles/server.dir/lex.yy.c.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/lex.yy.c.o: ../lex.yy.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/server.dir/lex.yy.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/lex.yy.c.o   -c "/home/yeehanchen/workspace/network&dis/project-1/server/lex.yy.c"
+
+CMakeFiles/server.dir/lex.yy.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/lex.yy.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/yeehanchen/workspace/network&dis/project-1/server/lex.yy.c" > CMakeFiles/server.dir/lex.yy.c.i
+
+CMakeFiles/server.dir/lex.yy.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/lex.yy.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/yeehanchen/workspace/network&dis/project-1/server/lex.yy.c" -o CMakeFiles/server.dir/lex.yy.c.s
+
+CMakeFiles/server.dir/lex.yy.c.o.requires:
+
+.PHONY : CMakeFiles/server.dir/lex.yy.c.o.requires
+
+CMakeFiles/server.dir/lex.yy.c.o.provides: CMakeFiles/server.dir/lex.yy.c.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/lex.yy.c.o.provides.build
+.PHONY : CMakeFiles/server.dir/lex.yy.c.o.provides
+
+CMakeFiles/server.dir/lex.yy.c.o.provides.build: CMakeFiles/server.dir/lex.yy.c.o
+
+
+CMakeFiles/server.dir/httpResponse.c.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/httpResponse.c.o: ../httpResponse.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/server.dir/httpResponse.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/httpResponse.c.o   -c "/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.c"
+
+CMakeFiles/server.dir/httpResponse.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/httpResponse.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.c" > CMakeFiles/server.dir/httpResponse.c.i
+
+CMakeFiles/server.dir/httpResponse.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/httpResponse.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.c" -o CMakeFiles/server.dir/httpResponse.c.s
+
+CMakeFiles/server.dir/httpResponse.c.o.requires:
+
+.PHONY : CMakeFiles/server.dir/httpResponse.c.o.requires
+
+CMakeFiles/server.dir/httpResponse.c.o.provides: CMakeFiles/server.dir/httpResponse.c.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/httpResponse.c.o.provides.build
+.PHONY : CMakeFiles/server.dir/httpResponse.c.o.provides
+
+CMakeFiles/server.dir/httpResponse.c.o.provides.build: CMakeFiles/server.dir/httpResponse.c.o
 
 
 # Object files for target server
 server_OBJECTS = \
-"CMakeFiles/server.dir/server.cpp.o"
+"CMakeFiles/server.dir/server.c.o" \
+"CMakeFiles/server.dir/parse.c.o" \
+"CMakeFiles/server.dir/y.tab.c.o" \
+"CMakeFiles/server.dir/lex.yy.c.o" \
+"CMakeFiles/server.dir/httpResponse.c.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
-server: CMakeFiles/server.dir/server.cpp.o
+server: CMakeFiles/server.dir/server.c.o
+server: CMakeFiles/server.dir/parse.c.o
+server: CMakeFiles/server.dir/y.tab.c.o
+server: CMakeFiles/server.dir/lex.yy.c.o
+server: CMakeFiles/server.dir/httpResponse.c.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -99,7 +203,11 @@ CMakeFiles/server.dir/build: server
 
 .PHONY : CMakeFiles/server.dir/build
 
-CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/server.c.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/parse.c.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/y.tab.c.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/lex.yy.c.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/httpResponse.c.o.requires
 
 .PHONY : CMakeFiles/server.dir/requires
 

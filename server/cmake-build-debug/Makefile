@@ -123,32 +123,140 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-server.o: server.cpp.o
+httpResponse.o: httpResponse.c.o
+
+.PHONY : httpResponse.o
+
+# target to build an object file
+httpResponse.c.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/httpResponse.c.o
+.PHONY : httpResponse.c.o
+
+httpResponse.i: httpResponse.c.i
+
+.PHONY : httpResponse.i
+
+# target to preprocess a source file
+httpResponse.c.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/httpResponse.c.i
+.PHONY : httpResponse.c.i
+
+httpResponse.s: httpResponse.c.s
+
+.PHONY : httpResponse.s
+
+# target to generate assembly for a file
+httpResponse.c.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/httpResponse.c.s
+.PHONY : httpResponse.c.s
+
+lex.yy.o: lex.yy.c.o
+
+.PHONY : lex.yy.o
+
+# target to build an object file
+lex.yy.c.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/lex.yy.c.o
+.PHONY : lex.yy.c.o
+
+lex.yy.i: lex.yy.c.i
+
+.PHONY : lex.yy.i
+
+# target to preprocess a source file
+lex.yy.c.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/lex.yy.c.i
+.PHONY : lex.yy.c.i
+
+lex.yy.s: lex.yy.c.s
+
+.PHONY : lex.yy.s
+
+# target to generate assembly for a file
+lex.yy.c.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/lex.yy.c.s
+.PHONY : lex.yy.c.s
+
+parse.o: parse.c.o
+
+.PHONY : parse.o
+
+# target to build an object file
+parse.c.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/parse.c.o
+.PHONY : parse.c.o
+
+parse.i: parse.c.i
+
+.PHONY : parse.i
+
+# target to preprocess a source file
+parse.c.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/parse.c.i
+.PHONY : parse.c.i
+
+parse.s: parse.c.s
+
+.PHONY : parse.s
+
+# target to generate assembly for a file
+parse.c.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/parse.c.s
+.PHONY : parse.c.s
+
+server.o: server.c.o
 
 .PHONY : server.o
 
 # target to build an object file
-server.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.o
-.PHONY : server.cpp.o
+server.c.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.c.o
+.PHONY : server.c.o
 
-server.i: server.cpp.i
+server.i: server.c.i
 
 .PHONY : server.i
 
 # target to preprocess a source file
-server.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.i
-.PHONY : server.cpp.i
+server.c.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.c.i
+.PHONY : server.c.i
 
-server.s: server.cpp.s
+server.s: server.c.s
 
 .PHONY : server.s
 
 # target to generate assembly for a file
-server.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.s
-.PHONY : server.cpp.s
+server.c.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.c.s
+.PHONY : server.c.s
+
+y.tab.o: y.tab.c.o
+
+.PHONY : y.tab.o
+
+# target to build an object file
+y.tab.c.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/y.tab.c.o
+.PHONY : y.tab.c.o
+
+y.tab.i: y.tab.c.i
+
+.PHONY : y.tab.i
+
+# target to preprocess a source file
+y.tab.c.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/y.tab.c.i
+.PHONY : y.tab.c.i
+
+y.tab.s: y.tab.c.s
+
+.PHONY : y.tab.s
+
+# target to generate assembly for a file
+y.tab.c.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/y.tab.c.s
+.PHONY : y.tab.c.s
 
 # Help Target
 help:
@@ -159,9 +267,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server"
+	@echo "... httpResponse.o"
+	@echo "... httpResponse.i"
+	@echo "... httpResponse.s"
+	@echo "... lex.yy.o"
+	@echo "... lex.yy.i"
+	@echo "... lex.yy.s"
+	@echo "... parse.o"
+	@echo "... parse.i"
+	@echo "... parse.s"
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"
+	@echo "... y.tab.o"
+	@echo "... y.tab.i"
+	@echo "... y.tab.s"
 .PHONY : help
 
 

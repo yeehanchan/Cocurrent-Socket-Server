@@ -1,1 +1,1 @@
-/usr/bin/c++   -g   CMakeFiles/server.dir/server.cpp.o  -o server  -L/usr/local/lib -llog4cplus -Wl,-rpath,/usr/local/lib 
+/usr/bin/cc  -g   CMakeFiles/server.dir/server.c.o CMakeFiles/server.dir/parse.c.o CMakeFiles/server.dir/y.tab.c.o CMakeFiles/server.dir/lex.yy.c.o CMakeFiles/server.dir/httpResponse.c.o  -o server  -L/usr/local/lib  -L"/home/yeehanchen/workspace/network&dis/project-1/server/starter_code2" -llog4cplus -Wl,-rpath,"/usr/local/lib:/home/yeehanchen/workspace/network&dis/project-1/server/starter_code2" 

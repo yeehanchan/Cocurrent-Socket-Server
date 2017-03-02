@@ -19,10 +19,12 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
-#include <log4cplus/logger.h>
-#include <log4cplus/loggingmacros.h>
-#include <log4cplus/configurator.h>
-#include <log4cplus/fileappender.h>
+//#include <log4cplus/logger.h>
+//#include <log4cplus/loggingmacros.h>
+//#include <log4cplus/configurator.h>
+//#include <log4cplus/fileappender.h>
+#include <fcntl.h>
+
 
 
 #define ECHO_PORT 9999
@@ -31,15 +33,15 @@
 int main(int argc, char* argv[])
 {
 
-    log4cplus::BasicConfigurator config;
-    config.configure();
+//    log4cplus::BasicConfigurator config;
+//    config.configure();
+//
+//    log4cplus::SharedAppenderPtr appenderPtr(new log4cplus::FileAppender("logs/client.log",std::ios_base::trunc,true,true));
+//    log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("client"));
+//    logger.addAppender(appenderPtr);
+//    LOG4CPLUS_INFO(logger,"Hello World");
 
-    log4cplus::SharedAppenderPtr appenderPtr(new log4cplus::FileAppender("logs/client.log",std::ios_base::trunc,true,true));
-    log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("client"));
-    logger.addAppender(appenderPtr);
-    LOG4CPLUS_INFO(logger,"Hello World");
-
-    if (argc != 3)
+    if (argc != 4)
     {
         fprintf(stderr, "usage: %s <server-ip> <port>",argv[0]);
         return EXIT_FAILURE;
@@ -72,10 +74,21 @@ int main(int argc, char* argv[])
         fprintf(stderr, "Connect");
         return EXIT_FAILURE;
     }
-        
+
+    int fd_in = open(argv[3], O_RDONLY);
     char msg[BUF_SIZE];
-    fgets(msg, BUF_SIZE, stdin);
-    //char msg[12] ="hello world";
+
+
+    if(fd_in < 0) {
+
+        printf("Failed to open the file\n");
+
+        return 0;
+
+    }
+
+    int readRet = read(fd_in,msg,BUF_SIZE);
+
 
     int bytes_received;
     fprintf(stdout, "Sending %s", msg);

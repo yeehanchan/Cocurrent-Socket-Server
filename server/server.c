@@ -16,23 +16,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/socket.h>
 #include <unistd.h>
-#include <log4cplus/logger.h>
-#include <log4cplus/loggingmacros.h>
-#include <log4cplus/configurator.h>
-#include <log4cplus/fileappender.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <unistd.h>
+//#include <log4cplus/logger.h>
+//#include <log4cplus/loggingmacros.h>
+//#include <log4cplus/configurator.h>
+//#include <log4cplus/fileappender.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#include "httpResponse.h"
 
 
-
-#define ECHO_PORT 9999
+#define ECHO_PORT "9999"
 #define BUF_SIZE 4096
-#define STDIN 0
 
 
 
@@ -48,56 +43,19 @@ void *get_in_addr(struct sockaddr *sa)
 
 
 
-
-int close_socket(int sock)
-{
-    if (close(sock))
-    {
-        fprintf(stderr, "Failed closing socket.\n");
-        return 1;
-    }
-    return 0;
-}
-
 int main(int argc, char* argv[])
 {
-    log4cplus::BasicConfigurator config;
-    config.configure();
-
-    log4cplus::SharedAppenderPtr appenderPtr(new log4cplus::FileAppender("logs/server.log",std::ios_base::trunc,true,true));
-    log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("server"));
-    logger.addAppender(appenderPtr);
-
-
-
-
-    int sock, client_sock;
-    ssize_t readret;
-    socklen_t cli_size;
-    struct sockaddr_in addr, cli_addr;
-    char buf[BUF_SIZE];
-
-
-
-
-    fprintf(stdout, "----- Echo Server -----\n");
-
-
-//    fd_set readfds;
-//    struct timeval tv;
-//    tv.tv_sec = 2;
-//    tv.tv_usec = 500000;
+//    log4cplus::BasicConfigurator config;
+//    config.configure();
 //
-//    FD_ZERO(&readfds);
-//    FD_SET(STDIN,&readfds);
-//    select(STDIN+1, &readfds, NULL, NULL, &tv);
-//    if(FD_ISSET(STDIN, &readfds)){
-//        fprintf(stderr,"stdin ready!");
-//    }
-//    else{
-//        fprintf(stderr, "not ready");
-//    }
+//    log4cplus::SharedAppenderPtr appenderPtr(new log4cplus::FileAppender("logs/server.log",std::ios_base::trunc,true,true));
+//    log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("server"));
+//    logger.addAppender(appenderPtr);
 
+
+
+
+    char buf[BUF_SIZE];
 
     struct timeval tv;
 
@@ -128,7 +86,17 @@ int main(int argc, char* argv[])
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
 
-    if ((rv = getaddrinfo(NULL, "9999", &hints, &ai)) != 0) {
+
+
+
+
+    fprintf(stdout, "----- Echo Server -----\n");
+
+
+
+
+
+    if ((rv = getaddrinfo(NULL, ECHO_PORT, &hints, &ai)) != 0) {
         fprintf(stderr, "selectserver: %s\n", gai_strerror(rv));
         return EXIT_FAILURE;
     }
@@ -154,7 +122,7 @@ int main(int argc, char* argv[])
 
 
     if (p == NULL) {
-        fprintf(stderr, "selectserver: failed to bind\n");
+        fprintf(stderr, "selectserver: failed to bind socket\n");
         return EXIT_FAILURE;
     }
 
@@ -164,6 +132,7 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
+    free(ai);
 
     FD_SET(listener, &master);
     fdmax = listener;
@@ -171,7 +140,6 @@ int main(int argc, char* argv[])
 
     for(;;){
         read_fds = master;
-
 
         if (select(fdmax+1, &read_fds, NULL, NULL, &tv) == -1) {
             fprintf(stderr,"select");
@@ -204,7 +172,7 @@ int main(int argc, char* argv[])
                     }
                 } else {
                     // handle data from a client
-                    if ((nbytes = recv(i, buf, sizeof buf, 0)) <= 0) {
+                    if ((nbytes = recv(i, buf, BUF_SIZE - 1, 0)) <= 0) {
                         // got error or connection closed by client
 
                         if (nbytes == 0) {
@@ -217,8 +185,9 @@ int main(int argc, char* argv[])
                         FD_CLR(i, &master); // remove from master set
                     } else {
                         // we got some data from a client
-
-                        send(i, buf, nbytes, 0);
+                        Request *request = parse(buf,BUF_SIZE - 1);
+                        Response *response = httpResponse(request);
+                        send(i, response->reason_phrase, sizeof(response->reason_phrase), 0);
 
                     }
                 } // END handle data from client
