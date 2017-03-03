@@ -10,15 +10,11 @@
 
 #endif //SERVER_HTTPRESPONSE_H
 
-
-
 typedef struct
 {
     char header_name[4096];
     char header_value[4096];
 } Response_header;
-
-
 
 typedef struct
 {

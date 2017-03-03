@@ -47,12 +47,23 @@ Request * parse(char *buffer, int size) {
   //Valid End State
 	if (state == STATE_CRLFCRLF) {
 		Request *request = (Request *) malloc(sizeof(Request));
-    request->header_count=0;
-    //TODO You will need to handle resizing this in parser.y
-    request->headers = (Request_header *) malloc(sizeof(Request_header)*1);
+		request->header_count=0;
+		//TODO You will need to handle resizing this in parser.y
+		request->headers = (Request_header *) malloc(sizeof(Request_header)*1);
 		set_parsing_options(buffer, i, request);
 		if (yyparse() == SUCCESS) {
-      return request;
+
+			//add body to header
+			char * body;
+			body = strchr(buffer, '\r\n\r\n');
+			body+=4; //removing \r\n\r\n
+
+			if (strlen(body)>0){
+				strcpy(request->headers[request->header_count].header_name,"Body");
+				strcpy(request->headers[request->header_count].header_name,body);
+				request->header_count++;
+			}
+      		return request;
 		}
 	}
   //TODO Handle Malformed Requests

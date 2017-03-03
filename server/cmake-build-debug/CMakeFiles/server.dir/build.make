@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/yeehanchan/Desktop/project-1/server
+CMAKE_SOURCE_DIR = /Users/praveen/Desktop/Cocurrent-Socket-Server/server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/yeehanchan/Desktop/project-1/server/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/server.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/server.dir/flags.make
 
 CMakeFiles/server.dir/server.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/server.c.o: ../server.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/server.dir/server.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/server.c.o   -c /Users/yeehanchan/Desktop/project-1/server/server.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/server.dir/server.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/server.c.o   -c /Users/praveen/Desktop/Cocurrent-Socket-Server/server/server.c
 
 CMakeFiles/server.dir/server.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/server.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/yeehanchan/Desktop/project-1/server/server.c > CMakeFiles/server.dir/server.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/praveen/Desktop/Cocurrent-Socket-Server/server/server.c > CMakeFiles/server.dir/server.c.i
 
 CMakeFiles/server.dir/server.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/server.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/yeehanchan/Desktop/project-1/server/server.c -o CMakeFiles/server.dir/server.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/praveen/Desktop/Cocurrent-Socket-Server/server/server.c -o CMakeFiles/server.dir/server.c.s
 
 CMakeFiles/server.dir/server.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/server.dir/server.c.o.provides.build: CMakeFiles/server.dir/server.c.
 
 CMakeFiles/server.dir/parse.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/parse.c.o: ../parse.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/server.dir/parse.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/parse.c.o   -c /Users/yeehanchan/Desktop/project-1/server/parse.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/server.dir/parse.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/parse.c.o   -c /Users/praveen/Desktop/Cocurrent-Socket-Server/server/parse.c
 
 CMakeFiles/server.dir/parse.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/parse.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/yeehanchan/Desktop/project-1/server/parse.c > CMakeFiles/server.dir/parse.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/praveen/Desktop/Cocurrent-Socket-Server/server/parse.c > CMakeFiles/server.dir/parse.c.i
 
 CMakeFiles/server.dir/parse.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/parse.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/yeehanchan/Desktop/project-1/server/parse.c -o CMakeFiles/server.dir/parse.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/praveen/Desktop/Cocurrent-Socket-Server/server/parse.c -o CMakeFiles/server.dir/parse.c.s
 
 CMakeFiles/server.dir/parse.c.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/server.dir/parse.c.o.provides.build: CMakeFiles/server.dir/parse.c.o
 
 CMakeFiles/server.dir/y.tab.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/y.tab.c.o: ../y.tab.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/server.dir/y.tab.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/y.tab.c.o   -c /Users/yeehanchan/Desktop/project-1/server/y.tab.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/server.dir/y.tab.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/y.tab.c.o   -c /Users/praveen/Desktop/Cocurrent-Socket-Server/server/y.tab.c
 
 CMakeFiles/server.dir/y.tab.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/y.tab.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/yeehanchan/Desktop/project-1/server/y.tab.c > CMakeFiles/server.dir/y.tab.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/praveen/Desktop/Cocurrent-Socket-Server/server/y.tab.c > CMakeFiles/server.dir/y.tab.c.i
 
 CMakeFiles/server.dir/y.tab.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/y.tab.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/yeehanchan/Desktop/project-1/server/y.tab.c -o CMakeFiles/server.dir/y.tab.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/praveen/Desktop/Cocurrent-Socket-Server/server/y.tab.c -o CMakeFiles/server.dir/y.tab.c.s
 
 CMakeFiles/server.dir/y.tab.c.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/server.dir/y.tab.c.o.provides.build: CMakeFiles/server.dir/y.tab.c.o
 
 CMakeFiles/server.dir/lex.yy.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/lex.yy.c.o: ../lex.yy.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/server.dir/lex.yy.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/lex.yy.c.o   -c /Users/yeehanchan/Desktop/project-1/server/lex.yy.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/server.dir/lex.yy.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/lex.yy.c.o   -c /Users/praveen/Desktop/Cocurrent-Socket-Server/server/lex.yy.c
 
 CMakeFiles/server.dir/lex.yy.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/lex.yy.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/yeehanchan/Desktop/project-1/server/lex.yy.c > CMakeFiles/server.dir/lex.yy.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/praveen/Desktop/Cocurrent-Socket-Server/server/lex.yy.c > CMakeFiles/server.dir/lex.yy.c.i
 
 CMakeFiles/server.dir/lex.yy.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/lex.yy.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/yeehanchan/Desktop/project-1/server/lex.yy.c -o CMakeFiles/server.dir/lex.yy.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/praveen/Desktop/Cocurrent-Socket-Server/server/lex.yy.c -o CMakeFiles/server.dir/lex.yy.c.s
 
 CMakeFiles/server.dir/lex.yy.c.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/server.dir/lex.yy.c.o.provides.build: CMakeFiles/server.dir/lex.yy.c.
 
 CMakeFiles/server.dir/httpResponse.c.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/httpResponse.c.o: ../httpResponse.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/server.dir/httpResponse.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/httpResponse.c.o   -c /Users/yeehanchan/Desktop/project-1/server/httpResponse.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/server.dir/httpResponse.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/server.dir/httpResponse.c.o   -c /Users/praveen/Desktop/Cocurrent-Socket-Server/server/httpResponse.c
 
 CMakeFiles/server.dir/httpResponse.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/server.dir/httpResponse.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/yeehanchan/Desktop/project-1/server/httpResponse.c > CMakeFiles/server.dir/httpResponse.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/praveen/Desktop/Cocurrent-Socket-Server/server/httpResponse.c > CMakeFiles/server.dir/httpResponse.c.i
 
 CMakeFiles/server.dir/httpResponse.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/server.dir/httpResponse.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/yeehanchan/Desktop/project-1/server/httpResponse.c -o CMakeFiles/server.dir/httpResponse.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/praveen/Desktop/Cocurrent-Socket-Server/server/httpResponse.c -o CMakeFiles/server.dir/httpResponse.c.s
 
 CMakeFiles/server.dir/httpResponse.c.o.requires:
 
@@ -195,7 +195,7 @@ server: CMakeFiles/server.dir/lex.yy.c.o
 server: CMakeFiles/server.dir/httpResponse.c.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -216,6 +216,6 @@ CMakeFiles/server.dir/clean:
 .PHONY : CMakeFiles/server.dir/clean
 
 CMakeFiles/server.dir/depend:
-	cd /Users/yeehanchan/Desktop/project-1/server/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/yeehanchan/Desktop/project-1/server /Users/yeehanchan/Desktop/project-1/server /Users/yeehanchan/Desktop/project-1/server/cmake-build-debug /Users/yeehanchan/Desktop/project-1/server/cmake-build-debug /Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/praveen/Desktop/Cocurrent-Socket-Server/server /Users/praveen/Desktop/Cocurrent-Socket-Server/server /Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug /Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug /Users/praveen/Desktop/Cocurrent-Socket-Server/server/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/server.dir/depend
 

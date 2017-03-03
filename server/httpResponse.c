@@ -14,6 +14,86 @@
 #define SERVER_NAME "Liso/1.0"
 #define HTTP_VERSION "HTTP/1.1"
 #define CONTENT_SIZE 8192
+
+
+
+char* getValueOfHeader(Request * request, char * header){
+
+    int i=0;
+    for (i=0;i<request->header_count;i++){
+        if(strcmp(request->headers[i].header_name,header) == 0){
+            return request->headers[i].header_value;
+        }
+    }
+    return '\0';
+}
+
+char * getContentType(Request * request){
+
+    char *file_ext;
+    file_ext = strrchr(request->http_uri, '.');
+
+    if(file_ext!=NULL){
+
+        typedef struct item_t {
+            const char *extension;
+            const char *content_type;
+        } item_t;
+
+        //initial table will more extensions if needed later
+        item_t table[] = {
+                { ".html", "text/html; charset=ISO-8859-1" },
+                { ".png", "image/png" },
+                {".pdf","application/pdf"},
+        };
+
+        for (item_t *p = table; p->extension != NULL; ++p) {
+            if (strcmp(p->extension, file_ext) == 0) {
+                return p->content_type;
+            }
+        }
+    }
+
+    return '\0';
+
+}
+
+char* getLastModified(Request * request) {
+
+    struct stat s;
+    struct timespec t = { 0, 0 };
+    char buffer[80];
+    struct tm *info;
+
+    if (!(stat(request->http_uri, &s) == 0)){
+        return "\0";
+    }
+
+#if defined(MTIME) && MTIME == 1    // Linux
+
+    t.tv_sec = s.st_mtime;
+
+#elif defined (MTIME) && MTIME == 2    // Mac OS X
+
+    t.tv_sec = s.st_mtimespec;
+#elif defined(MTIME) && MTIME == 3    // Mac OS X, with some additional settings
+
+    t.tv_sec = s.st_mtime;
+    t.tv_nsec = s.st_mtimensec;
+
+#else                                   // Solaris
+
+    t.tv_sec = s.st_mtime;
+
+#endif
+
+    info = localtime( &t.tv_sec );
+
+    strftime(buffer,80,"%x - %I:%M%p", info);
+
+    return buffer;
+}
+
 // status 505
 int isRightHTTPVersion(Request * request, Response * response){
 
@@ -28,10 +108,18 @@ int isRightHTTPVersion(Request * request, Response * response){
     return 1;
 }
 
-
 // status 411
 int isContentLength(Request* request, Response *response){
-    return 1;
+
+    char *value;
+    value = getValueOfHeader(request,"Content-Length" );
+
+    if( value != '\0' && atoi(value) > 0 && atoi(value)< CONTENT_SIZE){
+        return 1;
+    }
+
+    return 0;
+
 }
 
 // status 501
@@ -82,8 +170,6 @@ int isValidURI(Request * request, Response * response){
     parseURI(request,uri);
     struct stat sb;
 
-    printf(" what the fuck is the problem \n");
-
     if (stat(uri, &sb) == 0)
     {
         printf("YES \n");
@@ -97,7 +183,6 @@ int isValidURI(Request * request, Response * response){
     }
 
 }
-
 
 int setContent(char * uri, Response *response){
 
@@ -181,6 +266,8 @@ int setContentType(Response * response, char* value){
     return 1;
 }
 
+
+
 int setLastModified(Response * response, char* value){
 
     strcpy(response->entity_headers[response->entity_header_count].header_name, LAST_MODIFIED);
@@ -196,10 +283,6 @@ int setHTTPVersion(Response * response){
 
     return 1;
 }
-
-
-
-
 
 int respondGET(Request * request, Response *response){
 
@@ -238,10 +321,58 @@ int respondGET(Request * request, Response *response){
 
 int respondPOST(Request * request, Response *response) {
 
-//    strcpy(response->status_code,"200") ;
-//    strcpy(response->reason_phrase,STATUS_200);
+    if(isContentLength(request,response) == 1 ) {
 
-    return 0;
+        char *content_type;
+        content_type = getContentType(request);
+
+        if (content_type == '\0') {
+            printf("Extension not supported");
+            return 0;
+        }
+
+        if(!setContentType(response, content_type)){
+            printf("Couldnt retrieve content type");
+            return  0;
+        }
+
+        char *lastmodified;
+        lastmodified = getLastModified(request);
+
+        if(lastmodified == '\0'){
+            printf("Couldnt get last modified");
+            return 0;
+        }
+
+        if(!setLastModified(response, lastmodified)){
+            printf("Couldnt set last modified");
+            return 0;
+        }
+        strcpy(response->status_code, "200");
+        strcpy(response->reason_phrase, STATUS_200);
+        return 1;
+    }
+    return  0;
+
+
+//        if (access(request->http_uri, F_OK)==0) {
+//
+//            char *cmd = "file --mime-type";
+//            char *full_cmd= (char *)malloc(strlen(cmd)+strlen(request->http_uri)+2);
+//
+//            //sprintf(str, "Value of Pi = %f", M_PI);
+//            sprintf(full_cmd,"%s %s", cmd,request->http_uri);
+//
+//            printf("Full command", full_cmd);
+//
+//            FILE * f= popen(full_cmd, 'r');
+//
+//            if(f != NULL){
+//                char *cont;
+//                while (fgets(cont,100, f) != NULL)
+//                    printf("%s", cont);
+//            }
+//
 }
 
 
@@ -332,7 +463,6 @@ Response * httpResponse(Request * request){
                     }
 
             }
-
 
         }
 
