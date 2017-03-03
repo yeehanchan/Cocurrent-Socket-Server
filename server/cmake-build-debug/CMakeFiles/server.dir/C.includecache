@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.c
+/Users/yeehanchan/Desktop/project-1/server/httpResponse.c
 string.h
 -
 stdlib.h
@@ -14,13 +14,13 @@ stdlib.h
 fmtmsg.h
 -
 httpResponse.h
-/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.h
+/Users/yeehanchan/Desktop/project-1/server/httpResponse.h
 
-/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.h
+/Users/yeehanchan/Desktop/project-1/server/httpResponse.h
 parse.h
-/home/yeehanchen/workspace/network&dis/project-1/server/parse.h
+/Users/yeehanchan/Desktop/project-1/server/parse.h
 
-/home/yeehanchen/workspace/network&dis/project-1/server/lex.yy.c
+/Users/yeehanchan/Desktop/project-1/server/lex.yy.c
 stdio.h
 -
 string.h
@@ -34,17 +34,17 @@ inttypes.h
 unistd.h
 -
 y.tab.h
-/home/yeehanchen/workspace/network&dis/project-1/server/y.tab.h
+/Users/yeehanchan/Desktop/project-1/server/y.tab.h
 stdio.h
 -
 unistd.h
 -
 
-/home/yeehanchen/workspace/network&dis/project-1/server/parse.c
+/Users/yeehanchan/Desktop/project-1/server/parse.c
 parse.h
-/home/yeehanchen/workspace/network&dis/project-1/server/parse.h
+/Users/yeehanchan/Desktop/project-1/server/parse.h
 
-/home/yeehanchen/workspace/network&dis/project-1/server/parse.h
+/Users/yeehanchan/Desktop/project-1/server/parse.h
 string.h
 -
 stdio.h
@@ -52,7 +52,7 @@ stdio.h
 stdlib.h
 -
 
-/home/yeehanchen/workspace/network&dis/project-1/server/server.c
+/Users/yeehanchan/Desktop/project-1/server/server.c
 netinet/in.h
 -
 netinet/ip.h
@@ -70,11 +70,11 @@ arpa/inet.h
 netdb.h
 -
 httpResponse.h
-/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.h
+/Users/yeehanchan/Desktop/project-1/server/httpResponse.h
 
-/home/yeehanchen/workspace/network&dis/project-1/server/y.tab.c
+/Users/yeehanchan/Desktop/project-1/server/y.tab.c
 parse.h
-/home/yeehanchen/workspace/network&dis/project-1/server/parse.h
+/Users/yeehanchan/Desktop/project-1/server/parse.h
 stdio.h
 -
 stddef.h
@@ -92,5 +92,5 @@ stdlib.h
 stdio.h
 -
 
-/home/yeehanchen/workspace/network&dis/project-1/server/y.tab.h
+/Users/yeehanchan/Desktop/project-1/server/y.tab.h
 

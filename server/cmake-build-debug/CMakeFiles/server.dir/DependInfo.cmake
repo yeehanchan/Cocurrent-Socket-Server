@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/yeehanchen/workspace/network&dis/project-1/server/httpResponse.c" "/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles/server.dir/httpResponse.c.o"
-  "/home/yeehanchen/workspace/network&dis/project-1/server/lex.yy.c" "/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles/server.dir/lex.yy.c.o"
-  "/home/yeehanchen/workspace/network&dis/project-1/server/parse.c" "/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles/server.dir/parse.c.o"
-  "/home/yeehanchen/workspace/network&dis/project-1/server/server.c" "/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles/server.dir/server.c.o"
-  "/home/yeehanchen/workspace/network&dis/project-1/server/y.tab.c" "/home/yeehanchen/workspace/network&dis/project-1/server/cmake-build-debug/CMakeFiles/server.dir/y.tab.c.o"
+  "/Users/yeehanchan/Desktop/project-1/server/httpResponse.c" "/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles/server.dir/httpResponse.c.o"
+  "/Users/yeehanchan/Desktop/project-1/server/lex.yy.c" "/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles/server.dir/lex.yy.c.o"
+  "/Users/yeehanchan/Desktop/project-1/server/parse.c" "/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles/server.dir/parse.c.o"
+  "/Users/yeehanchan/Desktop/project-1/server/server.c" "/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles/server.dir/server.c.o"
+  "/Users/yeehanchan/Desktop/project-1/server/y.tab.c" "/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/CMakeFiles/server.dir/y.tab.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

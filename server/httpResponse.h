@@ -26,10 +26,20 @@ typedef struct
     char http_version[50];
     char status_code[50];
     char reason_phrase[4096];
+
+
     //header field
-    Response_header *headers;
-    int header_count;
-    //entity-body
+    Response_header *general_headers; // 0:connection, 1:date
+    Response_header *response_headers;// 0:server
+    Response_header *entity_headers;
+
+    // length of headers
+    int general_header_count;
+    int response_header_count;
+    int entity_header_count;
+    /
+
+    // /entity-body
     char body[8192];
 } Response;
 
@@ -37,13 +47,30 @@ typedef struct
 #define HEAD "HEAD"
 #define POST "POST"
 
-#define STATUS_501  "NOT IMPLEMENTED"
-#define STATUS_404  "NOT FOUND"
-#define STATUS_202  "ACCEPT"
 #define STATUS_200  "OK"
+#define STATUS_204  "NO CONTENT"
+#define STATUS_404  "NOT FOUND"
+#define STATUS_411  "LENGTH REQUIRED"
+#define STATUS_500  "INTERNAL SERVER ERROR"
+#define STATUS_503  "SERVICE UNAVAILABLE"
+#define STATUS_501  "NOT IMPLEMENTED"
 #define STATUS_505  "HTTP VERSION NOT SUPPORTED"
 #define STATUS_405  "METHOD NOT ALLOWED"
-#define STATUS_500  "INTERNAL SERVER ERROR"
+
+
+
+// General headers
+#define CONNECTION "Connection"
+#define DATE "Date"
+
+// Response headers
+#define SERVER "Server"
+
+
+// Entity headers
+#define CONTENT_LENGTH "Content-Length"
+#define CONTENT_TYPE "Content-Type"
+#define LAST_MODIFIED "Last-Modified"
 
 Response * httpResponse(Request *request);
 
