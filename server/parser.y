@@ -219,9 +219,7 @@ t_digit {
 
 $$ = '0' + $1;
 
-}; |
-
-t_dot;
+}; | t_dot;
 
 
 
@@ -396,7 +394,7 @@ request_header: text ows t_colon ows text ows t_crlf {
 	parsing_request->header_count++;
 };
 
-request_header_lines:  | request_header | request_header_lines request_header;
+request_header_lines:  | request_header; | request_header_lines request_header;
 
 request: request_line request_header_lines t_crlf{
 	YPRINTF("parsing_request: Matched Success.\n");

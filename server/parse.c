@@ -57,5 +57,6 @@ Request * parse(char *buffer, int size) {
 	}
   //TODO Handle Malformed Requests
     printf("Parsing Failed\n");
+	return NULL;
 
 }

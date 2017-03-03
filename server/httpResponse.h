@@ -37,7 +37,6 @@ typedef struct
     int general_header_count;
     int response_header_count;
     int entity_header_count;
-    /
 
     // /entity-body
     char body[8192];

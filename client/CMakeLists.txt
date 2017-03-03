@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.6)
 project(client)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD gcc)
 
-set(SOURCE_FILES client.cpp)
+set(SOURCE_FILES client.c)
 
-link_directories(/usr/local/lib)
-link_libraries(log4cplus)
 add_executable(client ${SOURCE_FILES})

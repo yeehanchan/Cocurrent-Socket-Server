@@ -1,15 +1,15 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
+  "C"
   )
 # The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/yeehanchen/workspace/network&dis/project-1/client/client.cpp" "/home/yeehanchen/workspace/network&dis/project-1/client/cmake-build-debug/CMakeFiles/client.dir/client.cpp.o"
+set(CMAKE_DEPENDS_CHECK_C
+  "/Users/yeehanchan/Desktop/project-1/client/client.c" "/Users/yeehanchan/Desktop/project-1/client/cmake-build-debug/CMakeFiles/client.dir/client.c.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
+set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 
 # Targets to which this target links.

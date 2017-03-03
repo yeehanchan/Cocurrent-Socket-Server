@@ -186,8 +186,11 @@ int main(int argc, char* argv[])
                     } else {
                         // we got some data from a client
                         Request *request = parse(buf,BUF_SIZE - 1);
-                        Response *response = httpResponse(request);
-                        send(i, response->reason_phrase, sizeof(response->reason_phrase), 0);
+                        if(request != NULL){
+                            Response *response = httpResponse(request);
+                            send(i, response->reason_phrase, sizeof(response->reason_phrase), 0);
+                        }
+
 
                     }
                 } // END handle data from client

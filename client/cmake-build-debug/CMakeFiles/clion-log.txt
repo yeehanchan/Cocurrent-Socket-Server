@@ -1,4 +1,4 @@
-/home/yeehanchen/clion/clion-2016.3.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/yeehanchen/workspace/network&dis/project-1/client
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/yeehanchan/Desktop/project-1/client
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/yeehanchen/workspace/network&dis/project-1/client/cmake-build-debug
+-- Build files have been written to: /Users/yeehanchan/Desktop/project-1/client/cmake-build-debug
