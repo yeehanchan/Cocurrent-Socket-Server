@@ -16,7 +16,7 @@
 #define CONTENT_SIZE 8192
 
 
-
+//returns value of specific header
 char* getValueOfHeader(Request * request, char * header){
 
     int i=0;
@@ -27,6 +27,7 @@ char* getValueOfHeader(Request * request, char * header){
     }
     return '\0';
 }
+
 
 char * getContentType(Request * request){
 
@@ -40,7 +41,7 @@ char * getContentType(Request * request){
             const char *content_type;
         } item_t;
 
-        //initial table will more extensions if needed later
+        //lookup table for extensions
         item_t table[] = {
                 { ".html", "text/html; charset=ISO-8859-1" },
                 { ".png", "image/png" },
@@ -58,11 +59,12 @@ char * getContentType(Request * request){
 
 }
 
+
 char* getLastModified(Request * request) {
 
     struct stat s;
     struct timespec t = { 0, 0 };
-    char buffer[80];
+    char date[80];
     struct tm *info;
 
     if (!(stat(request->http_uri, &s) == 0)){
@@ -72,7 +74,6 @@ char* getLastModified(Request * request) {
 #if defined(MTIME) && MTIME == 1    // Linux
 
     t.tv_sec = s.st_mtime;
-
 #elif defined (MTIME) && MTIME == 2    // Mac OS X
 
     t.tv_sec = s.st_mtimespec;
@@ -80,18 +81,14 @@ char* getLastModified(Request * request) {
 
     t.tv_sec = s.st_mtime;
     t.tv_nsec = s.st_mtimensec;
-
 #else                                   // Solaris
 
     t.tv_sec = s.st_mtime;
-
 #endif
 
     info = localtime( &t.tv_sec );
-
-    strftime(buffer,80,"%x - %I:%M%p", info);
-
-    return buffer;
+    strftime(date,80,"%x - %I:%M%p", info);
+    return date;
 }
 
 // status 505
@@ -116,6 +113,9 @@ int isContentLength(Request* request, Response *response){
 
     if( value != '\0' && atoi(value) > 0 && atoi(value)< CONTENT_SIZE){
         return 1;
+    }else{
+        strcpy(response->status_code, "411");
+        strcpy(response->reason_phrase, STATUS_411);
     }
 
     return 0;
@@ -165,7 +165,6 @@ int parseURI(Request *request, char * local_uri){
 // status 404
 int isValidURI(Request * request, Response * response){
 
-
     char *uri = (char *) malloc(4096);
     parseURI(request,uri);
     struct stat sb;
@@ -183,6 +182,7 @@ int isValidURI(Request * request, Response * response){
     }
 
 }
+
 
 int setContent(char * uri, Response *response){
 
@@ -206,8 +206,6 @@ int setContent(char * uri, Response *response){
 
 
 
-
-
 int setConnection(Response * response, char* value){
     printf("in connection \n");
 
@@ -219,6 +217,7 @@ int setConnection(Response * response, char* value){
 
     return 1;
 }
+
 
 int setDate(Response * response){
 
@@ -277,12 +276,14 @@ int setLastModified(Response * response, char* value){
     return 1;
 }
 
+
 int setHTTPVersion(Response * response){
 
     strcpy(response->http_version, HTTP_VERSION);
 
     return 1;
 }
+
 
 int respondGET(Request * request, Response *response){
 
@@ -319,6 +320,7 @@ int respondGET(Request * request, Response *response){
     return 1;
 }
 
+
 int respondPOST(Request * request, Response *response) {
 
     if(isContentLength(request,response) == 1 ) {
@@ -327,6 +329,9 @@ int respondPOST(Request * request, Response *response) {
         content_type = getContentType(request);
 
         if (content_type == '\0') {
+            //no content
+            strcpy(response->status_code, "204");
+            strcpy(response->reason_phrase, STATUS_204);
             printf("Extension not supported");
             return 0;
         }
@@ -353,26 +358,6 @@ int respondPOST(Request * request, Response *response) {
         return 1;
     }
     return  0;
-
-
-//        if (access(request->http_uri, F_OK)==0) {
-//
-//            char *cmd = "file --mime-type";
-//            char *full_cmd= (char *)malloc(strlen(cmd)+strlen(request->http_uri)+2);
-//
-//            //sprintf(str, "Value of Pi = %f", M_PI);
-//            sprintf(full_cmd,"%s %s", cmd,request->http_uri);
-//
-//            printf("Full command", full_cmd);
-//
-//            FILE * f= popen(full_cmd, 'r');
-//
-//            if(f != NULL){
-//                char *cont;
-//                while (fgets(cont,100, f) != NULL)
-//                    printf("%s", cont);
-//            }
-//
 }
 
 
@@ -410,8 +395,6 @@ Response * httpResponse(Request * request){
         // status 404
         return response;
     }
-
-
 
 
     if(strcmp(request->http_method, "GET") == 0){
