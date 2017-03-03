@@ -17,10 +17,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-//#include <log4cplus/logger.h>
-//#include <log4cplus/loggingmacros.h>
-//#include <log4cplus/configurator.h>
-//#include <log4cplus/fileappender.h>
 #include <arpa/inet.h>
 #include <netdb.h>
 #include "httpResponse.h"
@@ -45,15 +41,6 @@ void *get_in_addr(struct sockaddr *sa)
 
 int main(int argc, char* argv[])
 {
-//    log4cplus::BasicConfigurator config;
-//    config.configure();
-//
-//    log4cplus::SharedAppenderPtr appenderPtr(new log4cplus::FileAppender("logs/server.log",std::ios_base::trunc,true,true));
-//    log4cplus::Logger logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("server"));
-//    logger.addAppender(appenderPtr);
-
-
-
 
     char buf[BUF_SIZE];
 

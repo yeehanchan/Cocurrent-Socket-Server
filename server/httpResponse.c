@@ -1,5 +1,6 @@
 //
-// Created by yeehanchen on 3/1/17.
+// Authors: Yeehan Chan (enter net ID).
+//          Praveen Gupta (pmg83@cornell.edu)
 //
 
 #include <string.h>
@@ -363,8 +364,29 @@ int respondPOST(Request * request, Response *response) {
 
 int respondHEAD(Request * request, Response *response) {
 
-//    strcpy(response->status_code,"200") ;
-//    strcpy(response->reason_phrase,STATUS_200);
+    char* connection_value = "keep-alive";
+    if (!setConnection(response,connection_value)){
+
+        printf("Connection header set failed! \n");
+        return 0;
+    }
+    printf("Connection passed! \n");
+    if(!setDate(response)){
+        printf("date failed! \n");
+
+        setDate(response);
+        return 0;
+    }
+    printf("Date passed! \n");
+
+    char *uri = (char *) malloc(4096);
+    parseURI(request,uri);
+    printf("Parse passed! \n");
+
+    printf("Header Checked");
+
+    strcpy(response->status_code,"200") ;
+    strcpy(response->reason_phrase,STATUS_200);
 
     return 0;
 }
