@@ -1,0 +1,46 @@
+##Test Case1:
+    GET /Users/yeehanchan/Desktop/project-1/autolab_scripts/autograde/www/index.html HTTP/1.1
+    Host: localhost
+##Result:
+    return webpage to with css style rendered
+##Problem:
+    Pictures not rendered correctly.
+
+
+##Test Case2:
+    GET /Users/yeehanchan/Desktop/project-1/autolab_scripts/autograde/www/images/8.png HTTP/1.1
+    Host: localhost
+##Result:
+    HTTP/1.1 404 NOT FOUND
+
+##Test Case3:
+    Post without Content-Lenght
+    Host: localhost
+
+    This is the content;
+##Result
+    411 Length Required
+
+
+##Test Case4:
+    Invalid http version
+##Result
+    505 HTTP VERSION NOT SUPPORTED
+
+##Test Case5:
+    Sending multiple requests
+##Result
+    Memory corruption could happen sometimes.
+
+##Test Case5:
+    Parse multi-lines request
+##Result
+    pass
+
+
+##Test Case6
+    Malformed request
+##Result
+    500 Internal Server Error
+
+
