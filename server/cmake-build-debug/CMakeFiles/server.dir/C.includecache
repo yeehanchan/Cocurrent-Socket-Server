@@ -79,6 +79,8 @@ netdb.h
 -
 httpResponse.h
 /Users/praveen/Desktop/Distr Comp/Lab 1/Cocurrent-Socket-Server/server/httpResponse.h
+fcntl.h
+-
 
 /Users/praveen/Desktop/Distr Comp/Lab 1/Cocurrent-Socket-Server/server/y.tab.c
 parse.h

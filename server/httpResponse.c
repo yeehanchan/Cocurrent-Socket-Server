@@ -12,14 +12,10 @@
 #include "libgen.h"
 
 
-
-
 #define SERVER_NAME "Liso/1.0"
 #define CONTENT_SIZE 8192
 #define SP ' '
 #define CRLF '\r\n'
-
-
 
 
 //returns value of specific header
@@ -74,11 +70,6 @@ int isRightHTTPVersion(Request * request, Response * response){
 }
 
 
-
-
-
-
-
 // status 411
 int isContentLength(Request* request, Response *response){
 
@@ -95,9 +86,6 @@ int isContentLength(Request* request, Response *response){
     return 0;
 
 }
-
-
-
 
 
 // status 500
@@ -125,16 +113,6 @@ int isMethodImplemented(int method, Response *response){
         return 0;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 // status 404
@@ -182,6 +160,9 @@ int getContentType(Request * request, char* type){
                 { ".png", "image/png" },
                 {".pdf","application/pdf"},
                 {".css","text/css"},
+		{".gif","image/gif"},
+		{".jpg","image/jpeg"},
+		{".css","text/css"},
         };
 
         for (item_t *p = table; p->extension != NULL; ++p) {
@@ -193,7 +174,6 @@ int getContentType(Request * request, char* type){
     }
 
     return 1;
-
 }
 
 
@@ -348,20 +328,12 @@ int setLastModified(Response * response, char* value){
 }
 
 
-
-
-
 int setHTTPVersion(Response * response){
 
     strcpy(response->http_version, HTTP_VERSION);
 
     return 1;
 }
-
-
-
-
-
 
 
 // Generate response for request GET
@@ -485,12 +457,6 @@ int respondPOST(Request * request, Response *response) {
 }
 
 
-
-
-
-
-
-
 //Generate response for request HEAD
 int respondHEAD(Request * request, Response *response) {
     printf("respond to HEAD \n");
@@ -523,12 +489,6 @@ int respondHEAD(Request * request, Response *response) {
 }
 
 
-
-
-
-
-
-
 //Convert struct response to buffer
 int responseToBuffer(Response * response, char * buffer){
 
@@ -556,10 +516,6 @@ int responseToBuffer(Response * response, char * buffer){
     printf("final response:\n%s", buffer);
     return 1;
 }
-
-
-
-
 
 
 // Response handler
@@ -602,10 +558,6 @@ int httpResponse(Request * request, Response* response){
     }
 
 
-
-
-
-
     if(strcmp(request->http_method, "GET") == 0){
 
         printf("GET\n");
@@ -628,11 +580,6 @@ int httpResponse(Request * request, Response* response){
 
 
     }
-
-
-
-
-
 
 
     if(isMethodImplemented(method,response) == 0){
@@ -663,9 +610,6 @@ int httpResponse(Request * request, Response* response){
 
 
         }
-
-
-
 
     return 0;
 }
