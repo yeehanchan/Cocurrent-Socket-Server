@@ -24,7 +24,26 @@
 
 #define ECHO_PORT "9999"
 #define BUF_SIZE 4096
+#define ERROR 1
+#define DATA 2
 
+
+void logText(FILE * fptr, int type, char * text, char* parameter){
+
+    char *result[300];
+
+    if (parameter!= NULL){
+        sprintf(result,text,parameter);
+    }
+    if (type == ERROR){
+        sprintf(result,"\nERROR:%s",text);
+        fprintf(fptr, result);
+    }
+    else{
+        fprintf(fptr, text);
+    }
+
+}
 
 
 // get sockaddr, IPv4 or IPv6:
@@ -73,18 +92,17 @@ int main(int argc, char* argv[])
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
 
+    FILE *fptr;
+    fptr = fopen("log.txt", "a");
 
+    if (fptr== NULL){
+        fptr = stdout;
+    }
 
-
-
-    fprintf(stdout, "----- Echo Server -----\n");
-
-
-
-
+    logText(fptr, DATA, "----- Echo Server -----\n", NULL);
 
     if ((rv = getaddrinfo(NULL, ECHO_PORT, &hints, &ai)) != 0) {
-        fprintf(stderr, "selectserver: %s\n", gai_strerror(rv));
+        logText(fptr, ERROR,"selectserver: %s\n", gai_strerror(rv));
         return EXIT_FAILURE;
     }
 
@@ -93,7 +111,7 @@ int main(int argc, char* argv[])
         listener = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
 
         if(listener < 0){
-            fprintf(stdout,"create fail %d",p->ai_addrlen);
+            logText(fptr, ERROR,"create fail",p->ai_addrlen);
             continue;
         }
 
@@ -109,13 +127,13 @@ int main(int argc, char* argv[])
 
 
     if (p == NULL) {
-        fprintf(stderr, "selectserver: failed to bind socket\n");
+        logText(fptr, ERROR,"selectserver: failed to bind socket\n",NULL);
         return EXIT_FAILURE;
     }
 
 
     if (listen(listener, 5) == -1) {
-        perror("listen");
+        logText(fptr, ERROR,"listen",NULL);
         return EXIT_FAILURE;
     }
 
@@ -128,13 +146,15 @@ int main(int argc, char* argv[])
     for(;;){
         read_fds = master;
 
-        if (select(fdmax+1, &read_fds, NULL, NULL, &tv) == -1) {
-            fprintf(stderr,"select");
+        if (select(fdmax+1, &read_fds, NULL, NULL, NULL) == -1) {
+            logText(fptr, ERROR,"Select Error",NULL);
             exit(4);
         }
 
 
         for(i = 0; i <= fdmax; i++) {
+
+
             if (FD_ISSET(i, &read_fds)) { // we got one!!
                 if (i == listener) {
                     // handle new connections
@@ -144,18 +164,15 @@ int main(int argc, char* argv[])
                                    &addrlen);
 
                     if (newfd == -1) {
-                        perror("accept");
+                        logText(fptr, ERROR,"Accept Error",NULL);
                     } else {
                         FD_SET(newfd, &master); // add to master set
                         if (newfd > fdmax) {    // keep track of the max
                             fdmax = newfd;
                         }
-                        printf("selectserver: new connection from %s on "
-                                       "socket %d\n",
-                               inet_ntop(remoteaddr.ss_family,
-                                         get_in_addr((struct sockaddr*)&remoteaddr),
-                                         remoteIP, INET6_ADDRSTRLEN),
-                               newfd);
+                        char result[200];
+                        sprintf(result,"selectserver: new connection from %s on socket %d\n", inet_ntop(remoteaddr.ss_family,get_in_addr((struct sockaddr*)&remoteaddr), remoteIP,INET6_ADDRSTRLEN),newfd);
+                        logText(fptr,DATA,result,NULL);
                     }
                 } else {
                     // handle data from a client
@@ -164,21 +181,22 @@ int main(int argc, char* argv[])
 
                         if (nbytes == 0) {
                             // connection closed
-                            printf("selectserver: socket %d hung up\n", i);
+                            logText(fptr, ERROR,"selectserver: socket %s hung up\n",i);
                         } else {
-                            perror("recv");
+                            logText(fptr, ERROR,"Receive Error",NULL);
                         }
                         close(i); // bye!
                         FD_CLR(i, &master); // remove from master set
                     } else {
                         // we got some data from a client
                         Request *request = parse(buf,BUF_SIZE - 1);
-                        if(request != NULL){
-                            Response *response = httpResponse(request);
-                            send(i, response->reason_phrase, sizeof(response->reason_phrase), 0);
-                        }
+                        Response * response =  (Response *) malloc(sizeof(Response));
 
-
+                        httpResponse(request,response);
+                        char response_buffer[24576];
+                        responseToBuffer(response,response_buffer);
+                        send(i, response_buffer, sizeof(response_buffer), 0);
+                        free(response);
                     }
                 } // END handle data from client
             } // END got new incoming connection
@@ -186,6 +204,6 @@ int main(int argc, char* argv[])
 
 
     }
-//
+    fclose(fptr);
     return EXIT_SUCCESS;
 }

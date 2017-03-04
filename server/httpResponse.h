@@ -10,11 +10,16 @@
 
 #endif //SERVER_HTTPRESPONSE_H
 
+
+
+
 typedef struct
 {
     char header_name[4096];
     char header_value[4096];
 } Response_header;
+
+
 
 typedef struct
 {
@@ -27,7 +32,7 @@ typedef struct
     //header field
     Response_header *general_headers; // 0:connection, 1:date
     Response_header *response_headers;// 0:server
-    Response_header *entity_headers;
+    Response_header *entity_headers;  //
 
     // length of headers
     int general_header_count;
@@ -38,9 +43,7 @@ typedef struct
     char body[8192];
 } Response;
 
-#define GET "GET"
-#define HEAD "HEAD"
-#define POST "POST"
+#define HTTP_VERSION "HTTP/1.1"
 
 #define STATUS_200  "OK"
 #define STATUS_204  "NO CONTENT"
@@ -50,7 +53,7 @@ typedef struct
 #define STATUS_503  "SERVICE UNAVAILABLE"
 #define STATUS_501  "NOT IMPLEMENTED"
 #define STATUS_505  "HTTP VERSION NOT SUPPORTED"
-
+#define STATUS_405  "METHOD NOT ALLOWED"
 
 
 
@@ -67,5 +70,5 @@ typedef struct
 #define CONTENT_TYPE "Content-Type"
 #define LAST_MODIFIED "Last-Modified"
 
-Response * httpResponse(Request *request);
-
+int httpResponse(Request *request, Response* response);
+int responseToBuffer(Response * response, char *);

@@ -19,7 +19,7 @@ int main(int argc, char **argv){
   int readRet = read(fd_in,buf,8192);
   //Parse the buffer to the parse function. You will need to pass the socket fd and the buffer would need to
   //be read from that fd
-  Request *request = parse(buf,readRet,fd_in);
+  Request *request = parse(buf,readRet);
   //Just printing everything
   printf("Http Method %s\n",request->http_method);
   printf("Http Version %s\n",request->http_version);
