@@ -27,7 +27,7 @@
 
 
 #define ECHO_PORT "9999"
-#define BUF_SIZE 4096
+#define BUF_SIZE 8192
 
 
 
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
     }
 
 
-    if (listen(listener, 5) == -1) {
+    if (listen(listener, 20) == -1) {
         perror("listen");
         return EXIT_FAILURE;
     }
@@ -189,12 +189,26 @@ int main(int argc, char* argv[])
                         // we got some data from a client
                         Request *request = parse(buf,BUF_SIZE - 1);
                         Response * response =  (Response *) malloc(sizeof(Response));
+                        response->general_headers = (Response_header *)malloc(sizeof(response->general_headers)*3);
+                        response->response_headers = (Response_header *)malloc(sizeof(response->general_headers)*3);
+                        response->entity_headers = (Response_header *)malloc(sizeof(response->general_headers)*3);
+                        response->body = (char *)malloc(CONTENT_SIZE);
 
                         httpResponse(request,response);
-                        char response_buffer[24576];
+                        char* response_buffer = (char *)malloc(CONTENT_SIZE);
                         responseToBuffer(response,response_buffer);
-                        send(i, response_buffer, sizeof(response_buffer), 0);
+
+                        free(response->general_headers);
+                        free(response->response_headers);
+                        free(response->entity_headers);
+                        free(response->body);
+
                         free(response);
+
+                        send(i, response_buffer, strlen(response_buffer)+1, 0);
+
+                        free(response_buffer);
+
                     }
                 } // END handle data from client
             } // END got new incoming connection

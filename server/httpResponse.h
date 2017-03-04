@@ -20,6 +20,8 @@ typedef struct
 } Response_header;
 
 
+#define CONTENT_SIZE 20480
+#define RESPONSE_SIZE 30600
 
 typedef struct
 {
@@ -40,7 +42,7 @@ typedef struct
     int entity_header_count;
 
     // /entity-body
-    char body[8192];
+    char* body;
 } Response;
 
 #define HTTP_VERSION "HTTP/1.1"

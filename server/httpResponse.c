@@ -15,7 +15,6 @@
 
 
 #define SERVER_NAME "Liso/1.0"
-#define CONTENT_SIZE 8192
 #define SP ' '
 #define CRLF '\r\n'
 
@@ -178,20 +177,22 @@ int getContentType(Request * request, char* type){
 
         //lookup table for extensions
         item_t table[4] = {
-                { ".html", "text/html" },
-                { ".png", "image/png" },
+                { ".html", "text/html; charset=iso-8859-1"},
                 {".pdf","application/pdf"},
                 {".css","text/css"},
+                {".png","image/png"}
         };
 
+
         for (item_t *p = table; p->extension != NULL; ++p) {
-            printf("extension is %s \n", file_ext);
             if (strcmp(p->extension, file_ext) == 0) {
                 strcpy(type, p->content_type);
+                return 1;
             }
         }
     }
 
+    type[0] = '\0';
     return 1;
 
 }
@@ -203,30 +204,29 @@ int getContentType(Request * request, char* type){
 int setContent(char * uri, Response *response, char* length){
 
     printf("open file \n");
-    int fd = open(uri, O_RDONLY);
-    char cnt[CONTENT_SIZE];
 
+    FILE *fileptr;
+    char *buffer;
+    long filelen;
 
-    if(fd < 0) {
+    fileptr = fopen(uri, "rb");            // Open the file
+    fseek(fileptr, 0, SEEK_END);          // Jump to the end of the file
+    filelen = ftell(fileptr);             // Get the current byte offset in the file
+    rewind(fileptr);                      // Jump back to the beginning of the file
 
-        printf("Failed to open the file\n");
+    buffer = (char *)malloc((filelen+1)*sizeof(char)); // Enough memory for file + \0
+    fread(buffer, filelen, 1, fileptr); // Read in the entire file
+    fclose(fileptr); // Close the file
 
-        return 0;
-
-    }
-
-    int readRet = read(fd,cnt,CONTENT_SIZE);
-    strcpy(response->body, cnt);
-
-    sprintf(length,"%d",readRet);
-    close(fd);
-    close(readRet);
+    strcpy(response->body, buffer);
+    sprintf(length,"%ld",filelen);
+    printf("the file length %s \n",length);
     return 1;
 }
 
 
 
-char* getLastModified(Request * request, char* date) {
+int getLastModified(Request * request, char* date) {
 
     struct stat s;
     struct timespec t = { 0, 0 };
@@ -237,7 +237,8 @@ char* getLastModified(Request * request, char* date) {
 
 
     if (!(stat(uri, &s) == 0)){
-        return NULL;
+        date[0] = '\0';
+        return 0;
     }
 
 #if defined(MTIME) && MTIME == 1    // Linux
@@ -258,7 +259,7 @@ char* getLastModified(Request * request, char* date) {
     info = localtime( &t.tv_sec );
     strftime(date,80,"%x - %I:%M%p", info);
     printf("last modified date is %s \n ",date);
-    return date;
+    return 1;
 }
 
 
@@ -304,8 +305,8 @@ int setDate(Response * response){
 
 int setServer(Response * response){
 
-    strcpy(response->response_headers[0].header_name, SERVER);
-    strcpy(response->response_headers[0].header_value, SERVER_NAME);
+    strcpy(response->response_headers[response->response_header_count].header_name, SERVER);
+    strcpy(response->response_headers[response->response_header_count].header_value, SERVER_NAME);
     response->response_header_count++;
 
     return 1;
@@ -397,7 +398,7 @@ int respondGET(Request * request, Response *response){
 
     char content_type[80];
     getContentType(request,content_type);
-    if(content_type == NULL){
+    if(content_type[0] == '\0'){
 
         return 0;
     }else{
@@ -411,7 +412,7 @@ int respondGET(Request * request, Response *response){
 
     char last_modified[80];
     getLastModified(request, last_modified);
-    if(last_modified == NULL){
+    if(last_modified[0] == '\0'){
         return 0;
     }
     else{
@@ -452,7 +453,7 @@ int respondPOST(Request * request, Response *response) {
         char content_type[80];
         getContentType(request,content_type);
 
-        if (content_type == NULL) {
+        if (content_type[0] == '\0') {
             //no content
             strcpy(response->status_code, "204");
             strcpy(response->reason_phrase, STATUS_204);
@@ -468,7 +469,7 @@ int respondPOST(Request * request, Response *response) {
         char lastmodified[80];
         getLastModified(request,lastmodified);
 
-        if(lastmodified == NULL){
+        if(lastmodified[0] == '\0'){
             printf("Couldnt get last modified \n");
             return 0;
         }
@@ -495,31 +496,45 @@ int respondPOST(Request * request, Response *response) {
 int respondHEAD(Request * request, Response *response) {
     printf("respond to HEAD \n");
 
-    char* connection_value = "keep-alive";
+    char connection_value[20] = "keep-alive";
     if (!setConnection(response,connection_value)){
 
-        printf("Connection header set failed! \n");
         return 0;
     }
-    printf("Connection passed! \n");
-    if(!setDate(response)){
-        printf("date failed! \n");
+    printf("set Connection passed! \n");
 
-        setDate(response);
-        return 0;
-    }
-    printf("Date passed! \n");
 
-    char *uri = (char *) malloc(4096);
+    char uri[4096];
+    char length[1024];
     parseURI(request,uri);
     printf("Parse passed! \n");
 
-    printf("Header Checked");
 
-    strcpy(response->status_code,"200") ;
-    strcpy(response->reason_phrase,STATUS_200);
+    char last_modified[80];
+    getLastModified(request, last_modified);
+    if(last_modified[0] == '\0'){
+        return 0;
+    }
+    else{
+        if(!setLastModified(response,last_modified)){
+            return 0;
+        }
+    }
+    printf("set lastmodified passed! \n");
 
-    return 0;
+
+
+    if(!setDate(response)){
+        printf("date failed! \n");
+        return 0;
+    }
+
+    printf("Date passed! \n");
+
+    strcpy(response->status_code, "200");
+    strcpy(response->reason_phrase, STATUS_200);
+
+    return 1;
 }
 
 
@@ -534,26 +549,66 @@ int responseToBuffer(Response * response, char * buffer){
 
 
 
-    char *status_line = (char *)malloc(sizeof(4096));
-    char headers[8192];
-    char *space_line = (char *)malloc(sizeof(4096));
-    char *body = (char *)malloc(sizeof(8192));
+    char *status_line = (char*)malloc(4096);
+    char * general_headers = (char*)malloc(4096);
+    char * response_headers = (char*)malloc(4096);
+    char * entity_headers = (char*)malloc(4096);
+    char * body = (char*)malloc(CONTENT_SIZE);
 
     snprintf(status_line, 4096, "%s %s %s\n", response->http_version, response->status_code, response->reason_phrase);
-    snprintf(headers,8192, "%s: %s\n%s: %s\n%s: %s\n%s: %s\n%s: %s\n%s: %s\n",
-             response->general_headers[0].header_name,response->general_headers[0].header_value,
-             response->general_headers[1].header_name,response->general_headers[1].header_value,
-             response->response_headers[0].header_name,response->response_headers[0].header_value,
-             response->entity_headers[0].header_name, response->entity_headers[0].header_value,
-             response->entity_headers[1].header_name, response->entity_headers[1].header_value,
-             response->entity_headers[2].header_name,response->entity_headers[2].header_value);
+    int i;
+
+    if(response->general_header_count > 0){
+        for(i = 0; i < response->general_header_count;i++){
+            char * tmp = (char*)malloc(sizeof(50));
+            sprintf(tmp,"%s: %s\n",response->general_headers[i].header_name,response->general_headers[i].header_value);
+            strcat(general_headers,tmp);
+            free(tmp);
+
+        }
+    }else{
+        strcpy(general_headers,"");
+    }
+
+    if(response->response_header_count > 0){
+        for(i = 0; i < response->response_header_count;i++){
+            char * tmp = (char*)malloc(sizeof(50));
+            sprintf(tmp,"%s: %s\n",response->response_headers[i].header_name,response->response_headers[i].header_value);
+            strcat(response_headers,tmp);
+            free(tmp);
+
+        }
+    }else{
+        strcpy(response_headers,"");
+    }
 
 
-    snprintf(space_line, 4096,"     \n");
-    snprintf(body,8192,"%s\n", response->body);
+    if(response->entity_header_count > 0){
+        for(i = 0; i < response->entity_header_count;i++){
+            char *tmp = (char*)malloc(sizeof(50));
+            sprintf(tmp,"%s: %s\n",response->entity_headers[i].header_name,response->entity_headers[i].header_value);
+            strcat(entity_headers,tmp);
+            free(tmp);
+        }
+        strcat(entity_headers,"\n");
+    }else{
+        strcpy(entity_headers,"");
+    }
 
-    snprintf(buffer,24567,"%s%s%s%s",status_line,headers,space_line,body);
-    printf("final response:\n%s", buffer);
+    if(strlen(response->body) == -1){
+        strcpy(body,"");
+
+    }else{
+        strcpy(body,response->body);
+
+    }
+
+    snprintf(buffer, CONTENT_SIZE,"%s%s%s%s%s",status_line,general_headers,response_headers,entity_headers,body);
+    printf("the result %s", buffer);
+    free(status_line);
+    free(general_headers);
+    free(response_headers);
+    free(entity_headers);
     return 1;
 }
 
@@ -567,10 +622,6 @@ int httpResponse(Request * request, Response* response){
 
 
 
-
-    response->general_headers = (Response_header *)malloc(sizeof(response->general_headers)*3);
-    response->response_headers = (Response_header *)malloc(sizeof(response->general_headers)*3);
-    response->entity_headers = (Response_header *)malloc(sizeof(response->general_headers)*3);
 
     if(isValidRequest(request, response) == 0){
 
@@ -642,32 +693,23 @@ int httpResponse(Request * request, Response* response){
     }else{
             switch (method) {
                 case (0):
-
-                    if(respondGET(request, response)){
-                        return 1;
-                    }
+                    respondGET(request,response);
+                    break;
 
                 case (1):
-
-                    if(respondHEAD(request, response)){
-                        return 1;
-                    }
+                    respondHEAD(request, response);
+                    break;
 
                 case (2):
-
-                    if(respondPOST(request, response)){
-                        return 1;
-                    }
+                    respondPOST(request, response);
+                    break;
 
             }
-
 
         }
 
 
-
-
-    return 0;
+    return 1;
 }
 
 

@@ -3,3 +3,4 @@
 .DS_Store
 autolab_scripts/
 server/cmake-build-debug/
+server/cmake-build-debug/CMakeFiles/*
