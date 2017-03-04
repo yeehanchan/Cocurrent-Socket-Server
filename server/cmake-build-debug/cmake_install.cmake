@@ -1,4 +1,4 @@
-# Install script for directory: /Users/yeehanchan/Desktop/project-1/server
+# Install script for directory: /Users/praveen/Desktop/Distr Comp/Lab 1/Cocurrent-Socket-Server/server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/yeehanchan/Desktop/project-1/server/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/praveen/Desktop/Distr Comp/Lab 1/Cocurrent-Socket-Server/server/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
