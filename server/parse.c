@@ -15,32 +15,34 @@ Request * parse(char *buffer, int size) {
 
 	state = STATE_START;
 	while (state != STATE_CRLFCRLF) {
-		char expected = 0;
+        char expected = 0;
 
-		if (i == size)
-			break;
+        if (i == size)
+            break;
 
-		ch = buffer[i++];
-		buffer[offset++] = ch;
+        ch = buffer[i++];
+        buffer[offset++] = ch;
+        switch (state) {
+            case STATE_START:
+            case STATE_CRLF:
+                expected = '\r';
+                break;
+            case STATE_CR:
+                expected = '\r';
+            case STATE_CRLFCR:
+                expected = '\n';
+                break;
+            default:
+                state = STATE_START;
+                continue;
+        }
 
-		switch (state) {
-		case STATE_START:
-		case STATE_CRLF:
-			expected = '\r';
-			break;
-		case STATE_CR:
-		case STATE_CRLFCR:
-			expected = '\n';
-			break;
-		default:
-			state = STATE_START;
-			continue;
-		}
-
-		if (ch == expected)
-			state++;
-		else
-			state = STATE_START;
+        if (ch == expected) {
+            state++;
+        }
+		else{
+            state = STATE_START;
+        }
 
 	}
 

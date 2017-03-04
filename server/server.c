@@ -141,13 +141,15 @@ int main(int argc, char* argv[])
     for(;;){
         read_fds = master;
 
-        if (select(fdmax+1, &read_fds, NULL, NULL, &tv) == -1) {
+        if (select(fdmax+1, &read_fds, NULL, NULL, NULL) == -1) {
             fprintf(stderr,"select");
             exit(4);
         }
 
 
         for(i = 0; i <= fdmax; i++) {
+
+
             if (FD_ISSET(i, &read_fds)) { // we got one!!
                 if (i == listener) {
                     // handle new connections
@@ -186,12 +188,13 @@ int main(int argc, char* argv[])
                     } else {
                         // we got some data from a client
                         Request *request = parse(buf,BUF_SIZE - 1);
-                        if(request != NULL){
-                            Response *response = httpResponse(request);
-                            send(i, response->reason_phrase, sizeof(response->reason_phrase), 0);
-                        }
+                        Response * response =  (Response *) malloc(sizeof(Response));
 
-
+                        httpResponse(request,response);
+                        char response_buffer[24576];
+                        responseToBuffer(response,response_buffer);
+                        send(i, response_buffer, sizeof(response_buffer), 0);
+                        free(response);
                     }
                 } // END handle data from client
             } // END got new incoming connection
